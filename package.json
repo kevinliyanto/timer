@@ -1,0 +1,17 @@
+{
+  "name": "timer",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "http-server -c-1 .",
+    "format": "prettier --write ."
+  },
+  "keywords": [],
+  "author": "",
+  "packageManager": "pnpm@10.5.1",
+  "devDependencies": {
+    "http-server": "^14.1.1",
+    "prettier": "^3.5.3"
+  }
+}
