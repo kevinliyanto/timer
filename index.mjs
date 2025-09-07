@@ -202,7 +202,7 @@ const quotes = [
 ];
 
 const renderQuotes = () => {
-  const quote = document.getElementById('random-quotes');
+  const quote = document.getElementById('random-quote');
 
   quote.innerHTML = quotes[Math.floor(Math.random() * quotes.length)];
 };
