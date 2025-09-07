@@ -192,5 +192,21 @@ const renderBigCard = () => {
   bigCardContainer.innerHTML = createBigCard(singleCardData);
 };
 
+const quotes = [
+  "I know what stopped me, and it's never stopping me again. - Jimmy McGill",
+  'No more half measures, Walter - Mike Ehrmantraut',
+  'Well, technically chemistry is the study of matter. But I prefer to see it as the study of change. - Walter White',
+  'I did it for me. I liked it. I was good at it. And, I was really... I was alive - Walter White',
+  "You know why I didn't take the job? 'Cause it's too small! I don't care about it! It's nothing to me! It's a bacterium! I travel in worlds you can't even imagine! You can't conceive of what I'm capable of! I'm so far beyond you! I'm like a god in human clothing! Lightning bolts shoot from my fingertips! - Jimmy McGill",
+  "S'all good, Man! - Jimmy McGill",
+];
+
+const renderQuotes = () => {
+  const quote = document.getElementById('random-quotes');
+
+  quote.innerHTML = quotes[Math.floor(Math.random() * quotes.length)];
+};
+
 renderSmallCards();
 renderBigCard();
+renderQuotes();
