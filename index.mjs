@@ -18,8 +18,20 @@ const cardData = [
   },
   {
     key: 'application',
-    label: 'Days since application',
+    label: 'Days since PR',
+    date: '2025-12-17',
+  },
+  {
+    key: 'arrival-duration',
+    label: 'Duration spent for arrival to PR',
+    date: '2016-01-15',
+    dateFrom: '2025-12-17',
+  },
+  {
+    key: 'application-duration',
+    label: 'Duration spent for application',
     date: '2024-11-26',
+    dateFrom: '2025-12-17',
   },
 ];
 
@@ -33,16 +45,18 @@ const singleCardData = {
 //   date: '2025-06-05',
 // };
 
-const formatTimeDifference = (dateString) => {
-  const targetInstant = Temporal.PlainDateTime.from(dateString);
-  const nowInstant = Temporal.Now.plainDateTimeISO();
-  const duration = targetInstant.since(nowInstant);
+const formatTimeDifference = (date, dateReference) => {
+  const targetInstant = Temporal.PlainDateTime.from(date);
+  const referenceInstant = dateReference
+    ? Temporal.PlainDateTime.from(dateReference)
+    : Temporal.Now.plainDateTimeISO();
+  const duration = targetInstant.since(referenceInstant);
   const sign = duration.sign;
 
   const roundedAbsDuration = duration
     .round({
       roundingMode: 'floor',
-      relativeTo: nowInstant,
+      relativeTo: referenceInstant,
       smallestUnit: 'seconds',
       largestUnit: 'years',
     })
@@ -80,7 +94,7 @@ const formatTimeDifference = (dateString) => {
 
   const displayedDuration = roundedAbsDuration.round({
     roundingMode: 'floor',
-    relativeTo: nowInstant,
+    relativeTo: referenceInstant,
     ...displayedDurationRoundConfig,
   });
 
@@ -120,11 +134,10 @@ const createSmallCard = (card) => {
 
   const updateTimeDifference = () => {
     // Update header text according to time diff
-    const { sign, formatted } = formatTimeDifference(card.date);
-
+    const { sign, formatted } = formatTimeDifference(card.date, card.dateFrom);
     const headerText = `Days ${sign < 0 ? 'from' : 'to'} ${card.date}`;
     const mainText = `${formatted}
-            ${sign < 0 ? ` <span class="text-gray-400 text-sm" id="${card.key}-subtext">ago</span>` : ''}`;
+            ${sign < 0 && !card.dateFrom ? ` <span class="text-gray-400 text-sm" id="${card.key}-subtext">ago</span>` : ''}`;
 
     updateElementById(headerId, headerText);
     updateElementById(mainTextId, mainText);
