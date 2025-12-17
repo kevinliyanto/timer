@@ -19,17 +19,17 @@ const cardData = [
   {
     key: 'application',
     label: 'Days since PR',
-    date: '2025-12-17',
+    date: '2025-12-17 09:26:00+10',
   },
   {
     key: 'arrival-duration',
-    label: 'Duration spent for arrival to PR',
+    label: 'Duration spent (temp)',
     date: '2016-01-15',
     dateFrom: '2025-12-17',
   },
   {
     key: 'application-duration',
-    label: 'Duration spent for application',
+    label: 'Duration spent (application)',
     date: '2024-11-26',
     dateFrom: '2025-12-17',
   },
